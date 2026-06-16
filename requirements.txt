@@ -2,6 +2,4 @@ streamlit==1.35.0
 pandas==2.2.2
 numpy==1.26.4
 scikit-learn==1.6.1
-matplotlib==3.7.1
-seaborn==0.13.2
-pillow==10.4.0
+joblib==1.4.2
