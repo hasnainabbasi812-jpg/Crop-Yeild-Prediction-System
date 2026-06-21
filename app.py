@@ -14,7 +14,15 @@ st.markdown("""
     div.stButton > button:first-child { background-color: #1E1E1E; color: #00FF66; border: 1px solid #333333; border-radius: 6px; }
     </style>
 """, unsafe_allow_html=True)
+@st.cache_resource
+def load_assets():
+    model_path = 'crop_gb_model_final.joblib'
+    if os.path.exists(model_path):
+        model = joblib.load(model_path)
+        return model
+    return None
 
+model = load_assets()
 
 st.sidebar.markdown("<h2 style='text-align: center; color: #00FF66;'>🌱 AgriSmart Menu</h2>", unsafe_allow_html=True)
 page = st.sidebar.radio("Go to Page:", [
