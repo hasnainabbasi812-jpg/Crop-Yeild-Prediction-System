@@ -15,17 +15,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-@st.cache_resource
-def load_assets():
-    model_path = 'crop_gb_model_final.joblib'
-    scaler_path = 'scaler.pkl'
-    if os.path.exists(model_path) and os.path.exists(scaler_path):
-        model = joblib.load(model_path)
-        scaler = joblib.load(scaler_path)
-        return model, scaler
-    return None, None
-
-model, scaler = load_assets()
 
 st.sidebar.markdown("<h2 style='text-align: center; color: #00FF66;'>🌱 AgriSmart Menu</h2>", unsafe_allow_html=True)
 page = st.sidebar.radio("Go to Page:", [
@@ -36,7 +25,15 @@ page = st.sidebar.radio("Go to Page:", [
     "5. Feature Engineering Metrics",
     "6. Project Overview",
     "7. Contact & Submission Info"
-])
+@st.cache_resource
+def load_assets():
+    model_path = 'crop_gb_model_final.joblib'
+    if os.path.exists(model_path):
+        model = joblib.load(model_path)
+        return model
+    return None
+
+model = load_assets()
 
 if page == "1. Home Dashboard":
     st.title("🌾 Crop Yield Prediction System")
