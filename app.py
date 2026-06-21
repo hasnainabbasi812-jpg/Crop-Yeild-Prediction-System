@@ -5,7 +5,6 @@ import joblib
 import os
 
 st.set_page_config(page_title="AgriSmart - Crop Yield Prediction", page_icon="🌾", layout="wide")
-
 st.markdown("""
     <style>
     .main { background-color: #0A0A0A; color: #E0E0E0; }
@@ -14,6 +13,7 @@ st.markdown("""
     div.stButton > button:first-child { background-color: #1E1E1E; color: #00FF66; border: 1px solid #333333; border-radius: 6px; }
     </style>
 """, unsafe_allow_html=True)
+
 @st.cache_resource
 def load_assets():
     model_path = 'crop_gb_model_final.joblib'
@@ -33,15 +33,7 @@ page = st.sidebar.radio("Go to Page:", [
     "5. Feature Engineering Metrics",
     "6. Project Overview",
     "7. Contact & Submission Info"
-@st.cache_resource
-def load_assets():
-    model_path = 'crop_gb_model_final.joblib'
-    if os.path.exists(model_path):
-        model = joblib.load(model_path)
-        return model
-    return None
-
-model = load_assets()
+])
 
 if page == "1. Home Dashboard":
     st.title("🌾 Crop Yield Prediction System")
