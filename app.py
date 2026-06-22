@@ -29,7 +29,7 @@ def load_assets():
             model = joblib.load(model_path)
             return model
         except Exception as e:
-            st.error("owner Hasnain: {e}")
+            st.error("owner Hasnain")
             return None
     return None
 
